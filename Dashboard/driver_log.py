@@ -118,7 +118,7 @@ class Ui_DriverLog(object):
         self.tableWidgetUsers.setColumnCount(9)
         self.tableWidgetUsers.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         self.tableWidgetUsers.itemSelectionChanged.connect(self.change_data)
-        column_titles = ['id', 'first name', 'last name','username','phone number', 'email', 'address', 'license no.', 'license exp.' ]
+        column_titles = ['id', 'first name', 'last name','username','phone number', 'email', 'address', 'license no.', 'license exp.']
         counter = 0
         for title in column_titles:
             item = QtWidgets.QTableWidgetItem(title)
@@ -205,7 +205,7 @@ class Ui_DriverLog(object):
                 phone_number = self.lineEditPhoneNumber.text()
                 email = self.lineEditEmail.text()
                 address = str(self.textEditAddress.toPlainText())
-                self.database.run_update_user(user_id, first_name, last_name, phone_number, email, address)
+                self.database.update_user(user_id, first_name, last_name, phone_number, email, address)
                 self.update_user_list()
                 self.clear_data()
                 return
@@ -220,7 +220,7 @@ class Ui_DriverLog(object):
             confirm = self.showdialog()
             if confirm:
                 user_id = int(item[0].text())
-                self.database.run_delete_user(user_id)
+                self.database.delete_user(user_id)
                 self.update_user_list()
                 self.clear_data()
                 return

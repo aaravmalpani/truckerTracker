@@ -7,8 +7,15 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+
+from database_connector import Database
+from shipper import Shipper
 
 class Ui_AddShipper(object):
+
+    database = Database()
+
     def setupUi(self, AddShipper):
         AddShipper.setObjectName("AddShipper")
         AddShipper.resize(800, 600)
@@ -21,13 +28,20 @@ class Ui_AddShipper(object):
         font.setPointSize(35)
         font.setBold(False)
         font.setWeight(50)
+
         self.label.setFont(font)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
-        self.listViewShippers = QtWidgets.QListView(self.centralwidget)
-        self.listViewShippers.setGeometry(QtCore.QRect(40, 80, 261, 451))
-        self.listViewShippers.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked|QtWidgets.QAbstractItemView.EditKeyPressed|QtWidgets.QAbstractItemView.SelectedClicked)
-        self.listViewShippers.setObjectName("listViewShippers")
+        self.label.setStyleSheet('QLabel {color: #124E78;}')
+
+        self.listWidgetShippers = QtWidgets.QListWidget(self.centralwidget)
+        self.listWidgetShippers.setGeometry(QtCore.QRect(40, 80, 261, 451))
+        self.listWidgetShippers.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked|QtWidgets.QAbstractItemView.EditKeyPressed|QtWidgets.QAbstractItemView.SelectedClicked)
+        self.listWidgetShippers.setObjectName("listWidgetShippers")
+        self.listWidgetShippers.itemSelectionChanged.connect(self.change_data)
+
+        self.update_shipper_list()
+
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox.setGeometry(QtCore.QRect(320, 80, 451, 441))
         self.groupBox.setTitle("")
@@ -66,18 +80,32 @@ class Ui_AddShipper(object):
         self.pushButtonAddShipper.setGeometry(QtCore.QRect(330, 400, 114, 32))
         self.pushButtonAddShipper.setStyleSheet("background-color: rgb(40, 195, 50);")
         self.pushButtonAddShipper.setObjectName("pushButtonAddShipper")
+        self.pushButtonAddShipper.clicked.connect(self.add_shipper)
+
         self.pushButtonEditShipper = QtWidgets.QPushButton(self.groupBox)
         self.pushButtonEditShipper.setGeometry(QtCore.QRect(210, 400, 114, 32))
         self.pushButtonEditShipper.setStyleSheet("background-color: rgb(255, 193, 44);")
         self.pushButtonEditShipper.setObjectName("pushButtonEditShipper")
+        self.pushButtonEditShipper.clicked.connect(self.edit_shipper)
+
         self.pushButtonDeleteShipper = QtWidgets.QPushButton(self.groupBox)
         self.pushButtonDeleteShipper.setGeometry(QtCore.QRect(90, 400, 114, 32))
         self.pushButtonDeleteShipper.setStyleSheet("background-color: rgb(253, 70, 70);")
         self.pushButtonDeleteShipper.setObjectName("pushButtonDeleteShipper")
+        self.pushButtonDeleteShipper.clicked.connect(self.delete_shipper)
+
+        self.pushButtonClearForm = QtWidgets.QPushButton(self.groupBox)
+        self.pushButtonClearForm.setGeometry(QtCore.QRect(0, 400, 85, 32))
+        self.pushButtonClearForm.setStyleSheet("background-color: rgb(122, 122, 122);")
+        self.pushButtonClearForm.setObjectName("pushButtonClearForm")
+        self.pushButtonClearForm.clicked.connect(self.clear_data)
+
         self.labelError = QtWidgets.QLabel(self.centralwidget)
         self.labelError.setGeometry(QtCore.QRect(340, 520, 421, 21))
         self.labelError.setText("")
         self.labelError.setObjectName("labelError")
+        self.labelError.setStyleSheet('QLabel {color: #990000;}')
+
         self.pushButtonHome = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 41, 41))
         self.pushButtonHome.setStyleSheet("background-image: url(:/home/baseline_home_black_18dp.png);")
@@ -107,8 +135,111 @@ class Ui_AddShipper(object):
         self.pushButtonAddShipper.setText(_translate("AddShipper", "Add Shipper"))
         self.pushButtonEditShipper.setText(_translate("AddShipper", "Edit Shipper"))
         self.pushButtonDeleteShipper.setText(_translate("AddShipper", "Delete Shipper"))
+        self.pushButtonClearForm.setText(_translate("AddShipper","Clear Form"))
 
-import shipper_rc
+    def update_shipper_list(self):
+        self.listWidgetShippers.clear()
+        shipper_list = self.database.get_shippers()
+        for shipper in shipper_list:
+            shipper_description = "{} - {} - {}".format(shipper.shipper_id, shipper.name, shipper.address)
+            self.listWidgetShippers.addItem(shipper_description)
+
+    def change_data(self):
+        item = self.listWidgetShippers.selectedItems()
+        if len(item) == 0:
+            return
+        else:
+            list = item[0].text().split()
+            shipper = self.database.get_shipper(list[0])
+            self.lineEditShipperName.setText(shipper.name)
+            self.textEditShipperAddress.setText(shipper.address)
+            self.textEditOriginAddress.setText(shipper.origin)
+            self.textEditDestinationAddress.setText(shipper.destination)
+            self.textEditComments.setText(shipper.comments)
+
+    def clear_data(self):
+        self.listWidgetShippers.clearSelection()
+        self.lineEditShipperName.setText("")
+        self.textEditShipperAddress.setText("")
+        self.textEditOriginAddress.setText("")
+        self.textEditDestinationAddress.setText("")
+        self.textEditComments.setText("")
+
+    def edit_shipper(self):
+        item = self.listWidgetShippers.selectedItems()
+        if len(item) == 0:
+            print("ERROR PLEASE SELECT SHIPPER TO EDIT OR ADD NEW SHIPPER!")
+        else:
+            confirm = self.showdialog()
+            if confirm:
+                list = item[0].text().split()
+                shipper_id = list[0]
+
+                name = self.lineEditShipperName.text()
+                address = str(self.textEditShipperAddress.toPlainText())
+                origin = str(self.textEditOriginAddress.toPlainText())
+                destination = str(self.textEditDestinationAddress.toPlainText())
+                comments = str(self.textEditComments.toPlainText())
+                self.database.update_shipper(shipper_id,name,address,origin,destination,comments)
+                self.update_shipper_list()
+                self.clear_data()
+                return
+            else:
+                return
+
+    def delete_shipper(self):
+        item = self.listWidgetShippers.selectedItems()
+        if len(item) == 0:
+            print("ERROR PLEASE SELECT SHIPPER TO DELETE OR ADD NEW SHIPPER!")
+        else:
+            confirm = self.showdialog()
+            if confirm:
+                list = item[0].text().split()
+                shipper_id = list[0]
+
+                self.database.delete_shipper(shipper_id)
+                self.update_shipper_list()
+                self.clear_data()
+                return
+            else:
+                return
+
+    def add_shipper(self):
+        name = self.lineEditShipperName.text()
+        address = str(self.textEditShipperAddress.toPlainText())
+        origin = str(self.textEditOriginAddress.toPlainText())
+        destination = str(self.textEditDestinationAddress.toPlainText())
+        comments = str(self.textEditComments.toPlainText())
+
+        if (name == ""):
+            self.labelError.setText("Error: Name Cannot be blank!")
+            return
+        if (address == ""):
+            self.labelError.setText("Error: Address Cannot be blank")
+            return
+
+        self.database.add_shipper(name,address,origin,destination,comments)
+        self.update_shipper_list()
+        self.clear_data()
+        return
+
+    def showdialog(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+
+        msg.setText("Make Changes?")
+        msg.setInformativeText("The action CANNOT be undone!")
+        msg.setWindowTitle("Confirmation")
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        retval = msg.exec_()
+
+        if retval == QMessageBox.Yes:
+            return True
+        else:
+            return False
+
+
+
 
 if __name__ == "__main__":
     import sys
