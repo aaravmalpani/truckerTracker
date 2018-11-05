@@ -49,66 +49,84 @@ class Ui_AddShipper(object):
         self.lineEditShipperName = QtWidgets.QLineEdit(self.groupBox)
         self.lineEditShipperName.setGeometry(QtCore.QRect(10, 30, 441, 21))
         self.lineEditShipperName.setObjectName("lineEditShipperName")
+
         self.label_2 = QtWidgets.QLabel(self.groupBox)
         self.label_2.setGeometry(QtCore.QRect(10, 10, 101, 16))
         self.label_2.setObjectName("label_2")
+
         self.label_3 = QtWidgets.QLabel(self.groupBox)
-        self.label_3.setGeometry(QtCore.QRect(10, 60, 111, 16))
+        self.label_3.setGeometry(QtCore.QRect(10, 110, 111, 16))
         self.label_3.setObjectName("label_3")
+
         self.textEditShipperAddress = QtWidgets.QTextEdit(self.groupBox)
-        self.textEditShipperAddress.setGeometry(QtCore.QRect(10, 80, 441, 51))
+        self.textEditShipperAddress.setGeometry(QtCore.QRect(10, 130, 441, 51))
         self.textEditShipperAddress.setObjectName("textEditShipperAddress")
+
         self.label_4 = QtWidgets.QLabel(self.groupBox)
-        self.label_4.setGeometry(QtCore.QRect(10, 140, 111, 16))
+        self.label_4.setGeometry(QtCore.QRect(10, 180, 111, 16))
         self.label_4.setObjectName("label_4")
+
         self.textEditOriginAddress = QtWidgets.QTextEdit(self.groupBox)
-        self.textEditOriginAddress.setGeometry(QtCore.QRect(10, 160, 441, 51))
+        self.textEditOriginAddress.setGeometry(QtCore.QRect(10, 200, 441, 51))
         self.textEditOriginAddress.setObjectName("textEditOriginAddress")
+
         self.label_5 = QtWidgets.QLabel(self.groupBox)
-        self.label_5.setGeometry(QtCore.QRect(10, 220, 141, 16))
+        self.label_5.setGeometry(QtCore.QRect(10, 250, 141, 16))
         self.label_5.setObjectName("label_5")
+
         self.textEditDestinationAddress = QtWidgets.QTextEdit(self.groupBox)
-        self.textEditDestinationAddress.setGeometry(QtCore.QRect(10, 240, 441, 51))
+        self.textEditDestinationAddress.setGeometry(QtCore.QRect(10, 270, 441, 51))
         self.textEditDestinationAddress.setObjectName("textEditDestinationAddress")
+
         self.label_6 = QtWidgets.QLabel(self.groupBox)
-        self.label_6.setGeometry(QtCore.QRect(10, 300, 141, 16))
+        self.label_6.setGeometry(QtCore.QRect(10, 320, 141, 16))
         self.label_6.setObjectName("label_6")
+
         self.textEditComments = QtWidgets.QTextEdit(self.groupBox)
-        self.textEditComments.setGeometry(QtCore.QRect(10, 320, 441, 71))
+        self.textEditComments.setGeometry(QtCore.QRect(10, 340, 441, 51))
         self.textEditComments.setObjectName("textEditComments")
+
         self.pushButtonAddShipper = QtWidgets.QPushButton(self.groupBox)
-        self.pushButtonAddShipper.setGeometry(QtCore.QRect(330, 400, 114, 32))
+        self.pushButtonAddShipper.setGeometry(QtCore.QRect(353, 400, 101, 32))
         self.pushButtonAddShipper.setStyleSheet("background-color: rgb(40, 195, 50);")
         self.pushButtonAddShipper.setObjectName("pushButtonAddShipper")
         self.pushButtonAddShipper.clicked.connect(self.add_shipper)
 
         self.pushButtonEditShipper = QtWidgets.QPushButton(self.groupBox)
-        self.pushButtonEditShipper.setGeometry(QtCore.QRect(210, 400, 114, 32))
+        self.pushButtonEditShipper.setGeometry(QtCore.QRect(243, 400, 101, 32))
         self.pushButtonEditShipper.setStyleSheet("background-color: rgb(255, 193, 44);")
         self.pushButtonEditShipper.setObjectName("pushButtonEditShipper")
         self.pushButtonEditShipper.clicked.connect(self.edit_shipper)
 
         self.pushButtonDeleteShipper = QtWidgets.QPushButton(self.groupBox)
-        self.pushButtonDeleteShipper.setGeometry(QtCore.QRect(90, 400, 114, 32))
+        self.pushButtonDeleteShipper.setGeometry(QtCore.QRect(130, 400, 101, 32))
         self.pushButtonDeleteShipper.setStyleSheet("background-color: rgb(253, 70, 70);")
         self.pushButtonDeleteShipper.setObjectName("pushButtonDeleteShipper")
         self.pushButtonDeleteShipper.clicked.connect(self.delete_shipper)
 
         self.pushButtonClearForm = QtWidgets.QPushButton(self.groupBox)
-        self.pushButtonClearForm.setGeometry(QtCore.QRect(0, 400, 85, 32))
+        self.pushButtonClearForm.setGeometry(QtCore.QRect(10, 400, 101, 32))
         self.pushButtonClearForm.setStyleSheet("background-color: rgb(122, 122, 122);")
         self.pushButtonClearForm.setObjectName("pushButtonClearForm")
         self.pushButtonClearForm.clicked.connect(self.clear_data)
 
+        self.lineEditBrokerName = QtWidgets.QLineEdit(self.groupBox)
+        self.lineEditBrokerName.setGeometry(QtCore.QRect(10, 80, 441, 21))
+        self.lineEditBrokerName.setObjectName("lineEditBrokerName")
+        self.label_7 = QtWidgets.QLabel(self.groupBox)
+        self.label_7.setGeometry(QtCore.QRect(10, 55, 101, 21))
+
+        self.label_7.setObjectName("label_7")
         self.labelError = QtWidgets.QLabel(self.centralwidget)
         self.labelError.setGeometry(QtCore.QRect(340, 520, 421, 21))
         self.labelError.setText("")
+
         self.labelError.setObjectName("labelError")
         self.labelError.setStyleSheet('QLabel {color: #990000;}')
 
         self.pushButtonHome = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 41, 41))
-        self.pushButtonHome.setStyleSheet("background-image: url(:/home/baseline_home_black_18dp.png);")
+        self.pushButtonHome.setStyleSheet("background-image: url(:/Users/aarav/Documents/Github/truckerTracker/Dashboard/venv/imgs/truck-blue.png);")
         self.pushButtonHome.setText("")
         self.pushButtonHome.setObjectName("pushButtonHome")
         AddShipper.setCentralWidget(self.centralwidget)
@@ -136,6 +154,7 @@ class Ui_AddShipper(object):
         self.pushButtonEditShipper.setText(_translate("AddShipper", "Edit Shipper"))
         self.pushButtonDeleteShipper.setText(_translate("AddShipper", "Delete Shipper"))
         self.pushButtonClearForm.setText(_translate("AddShipper","Clear Form"))
+        self.label_7.setText(_translate("AddShipper", "Broker Name:"))
 
     def update_shipper_list(self):
         self.listWidgetShippers.clear()
@@ -152,6 +171,7 @@ class Ui_AddShipper(object):
             list = item[0].text().split()
             shipper = self.database.get_shipper(list[0])
             self.lineEditShipperName.setText(shipper.name)
+            self.lineEditBrokerName.setText(shipper.broker_name)
             self.textEditShipperAddress.setText(shipper.address)
             self.textEditOriginAddress.setText(shipper.origin)
             self.textEditDestinationAddress.setText(shipper.destination)
@@ -160,6 +180,7 @@ class Ui_AddShipper(object):
     def clear_data(self):
         self.listWidgetShippers.clearSelection()
         self.lineEditShipperName.setText("")
+        self.lineEditBrokerName.setText("")
         self.textEditShipperAddress.setText("")
         self.textEditOriginAddress.setText("")
         self.textEditDestinationAddress.setText("")
@@ -176,11 +197,12 @@ class Ui_AddShipper(object):
                 shipper_id = list[0]
 
                 name = self.lineEditShipperName.text()
+                broker_name = self.lineEditBrokerName.text()
                 address = str(self.textEditShipperAddress.toPlainText())
                 origin = str(self.textEditOriginAddress.toPlainText())
                 destination = str(self.textEditDestinationAddress.toPlainText())
                 comments = str(self.textEditComments.toPlainText())
-                self.database.update_shipper(shipper_id,name,address,origin,destination,comments)
+                self.database.update_shipper(shipper_id,name, broker_name, address,origin,destination,comments)
                 self.update_shipper_list()
                 self.clear_data()
                 return
@@ -206,6 +228,7 @@ class Ui_AddShipper(object):
 
     def add_shipper(self):
         name = self.lineEditShipperName.text()
+        broker_name = self.lineEditBrokerName.text()
         address = str(self.textEditShipperAddress.toPlainText())
         origin = str(self.textEditOriginAddress.toPlainText())
         destination = str(self.textEditDestinationAddress.toPlainText())
@@ -218,7 +241,7 @@ class Ui_AddShipper(object):
             self.labelError.setText("Error: Address Cannot be blank")
             return
 
-        self.database.add_shipper(name,address,origin,destination,comments)
+        self.database.add_shipper(name, broker_name, address,origin,destination,comments)
         self.update_shipper_list()
         self.clear_data()
         return
