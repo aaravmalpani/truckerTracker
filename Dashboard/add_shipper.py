@@ -189,7 +189,7 @@ class Ui_AddShipper(object):
     def edit_shipper(self):
         item = self.listWidgetShippers.selectedItems()
         if len(item) == 0:
-            print("ERROR PLEASE SELECT SHIPPER TO EDIT OR ADD NEW SHIPPER!")
+            self.labelError.setText("ERROR PLEASE SELECT SHIPPER TO EDIT!")
         else:
             confirm = self.showdialog()
             if confirm:
@@ -212,7 +212,7 @@ class Ui_AddShipper(object):
     def delete_shipper(self):
         item = self.listWidgetShippers.selectedItems()
         if len(item) == 0:
-            print("ERROR PLEASE SELECT SHIPPER TO DELETE OR ADD NEW SHIPPER!")
+            self.labelError.setText("ERROR PLEASE SELECT SHIPPER TO DELETE!")
         else:
             confirm = self.showdialog()
             if confirm:

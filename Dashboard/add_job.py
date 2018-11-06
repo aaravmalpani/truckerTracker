@@ -7,18 +7,20 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+
 from database_connector import Database
 from current_jobs import Current_job
 
-class Ui_AddShipper(object):
+class Ui_AddJob(object):
 
     database = Database()
 
-    def setupUi(self, AddShipper):
-        AddShipper.setObjectName("AddShipper")
-        AddShipper.resize(809, 633)
-        AddShipper.setStyleSheet("background-color: rgb(255, 255, 255);")
-        self.centralwidget = QtWidgets.QWidget(AddShipper)
+    def setupUi(self, AddJob):
+        AddJob.setObjectName("AddJob")
+        AddJob.resize(809, 633)
+        AddJob.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.centralwidget = QtWidgets.QWidget(AddJob)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(280, 10, 261, 51))
@@ -39,7 +41,7 @@ class Ui_AddShipper(object):
         self.listWidgetJobs.itemSelectionChanged.connect(self.change_data)
 
         self.update_jobs_list()
-
+        self.selected_job = None
 
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox.setGeometry(QtCore.QRect(310, 90, 451, 441))
@@ -73,13 +75,18 @@ class Ui_AddShipper(object):
         self.pushButtonAddJob.setGeometry(QtCore.QRect(330, 400, 114, 32))
         self.pushButtonAddJob.setStyleSheet("background-color: rgb(40, 195, 50);")
         self.pushButtonAddJob.setObjectName("pushButtonAddJob")
+        self.pushButtonAddJob.clicked.connect(self.add_job)
+
         self.pushButtonEditJob = QtWidgets.QPushButton(self.groupBox)
         self.pushButtonEditJob.setGeometry(QtCore.QRect(210, 400, 114, 32))
         self.pushButtonEditJob.setStyleSheet("background-color: rgb(255, 193, 44);")
         self.pushButtonEditJob.setObjectName("pushButtonEditJob")
+        self.pushButtonEditJob.clicked.connect(self.edit_job)
+
         self.pushButtonDeleteJob = QtWidgets.QPushButton(self.groupBox)
         self.pushButtonDeleteJob.setGeometry(QtCore.QRect(90, 400, 114, 32))
         self.pushButtonDeleteJob.setStyleSheet("background-color: rgb(253, 70, 70);")
+        self.pushButtonDeleteJob.clicked.connect(self.delete_job)
 
         self.pushButtonDeleteJob.setObjectName("pushButtonDeleteJob")
         self.spinBoxShipper = QtWidgets.QComboBox(self.groupBox)
@@ -146,34 +153,34 @@ class Ui_AddShipper(object):
         self.pushButtonHome.setStyleSheet("background-image: url(:/home/baseline_home_black_18dp.png);")
         self.pushButtonHome.setText("")
         self.pushButtonHome.setObjectName("pushButtonHome")
-        AddShipper.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(AddShipper)
+        AddJob.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(AddJob)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 809, 22))
         self.menubar.setObjectName("menubar")
-        AddShipper.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(AddShipper)
+        AddJob.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(AddJob)
         self.statusbar.setObjectName("statusbar")
-        AddShipper.setStatusBar(self.statusbar)
+        AddJob.setStatusBar(self.statusbar)
 
-        self.retranslateUi(AddShipper)
-        QtCore.QMetaObject.connectSlotsByName(AddShipper)
+        self.retranslateUi(AddJob)
+        QtCore.QMetaObject.connectSlotsByName(AddJob)
 
-    def retranslateUi(self, AddShipper):
+    def retranslateUi(self, AddJob):
         _translate = QtCore.QCoreApplication.translate
-        AddShipper.setWindowTitle(_translate("AddShipper", "MainWindow"))
-        self.label.setText(_translate("AddShipper", "ADD JOB"))
-        self.label_2.setText(_translate("AddShipper", "Shipper Name:"))
-        self.label_3.setText(_translate("AddShipper", "Username:"))
-        self.label_4.setText(_translate("AddShipper", "Origin Address:"))
-        self.label_5.setText(_translate("AddShipper", "Destination Address:"))
-        self.label_6.setText(_translate("AddShipper", "Comments:"))
-        self.pushButtonAddJob.setText(_translate("AddShipper", "Add Job"))
-        self.pushButtonEditJob.setText(_translate("AddShipper", "Edit Job"))
-        self.pushButtonDeleteJob.setText(_translate("AddShipper", "Delete Job"))
-        self.label_7.setText(_translate("AddShipper", "Date:"))
-        self.label_8.setText(_translate("AddShipper", "Start Time:"))
-        self.label_10.setText(_translate("AddShipper", "Rate:"))
-        self.label_11.setText(_translate("AddShipper", "$"))
+        AddJob.setWindowTitle(_translate("AddJob", "MainWindow"))
+        self.label.setText(_translate("AddJob", "ADD JOB"))
+        self.label_2.setText(_translate("AddJob", "Shipper Name:"))
+        self.label_3.setText(_translate("AddJob", "Username:"))
+        self.label_4.setText(_translate("AddJob", "Origin Address:"))
+        self.label_5.setText(_translate("AddJob", "Destination Address:"))
+        self.label_6.setText(_translate("AddJob", "Comments:"))
+        self.pushButtonAddJob.setText(_translate("AddJob", "Add Job"))
+        self.pushButtonEditJob.setText(_translate("AddJob", "Edit Job"))
+        self.pushButtonDeleteJob.setText(_translate("AddJob", "Delete Job"))
+        self.label_7.setText(_translate("AddJob", "Date:"))
+        self.label_8.setText(_translate("AddJob", "Start Time:"))
+        self.label_10.setText(_translate("AddJob", "Rate:"))
+        self.label_11.setText(_translate("AddJob", "$"))
 
 
     def update_jobs_list(self):
@@ -198,19 +205,109 @@ class Ui_AddShipper(object):
             if index >= 0:
                 self.spinBoxUsername.setCurrentIndex(index)
 
-            job = self.database.get_current_job_by_id(list[0])
-            self.lineEditRate.setText(str(job.rate))
-            self.textEditOriginAddress.setText(job.origin)
-            self.textEditDestinationAddress.setText(job.destination)
-            self.textEditComments.setText(job.comments)
+            self.selected_job = self.database.get_current_job_by_id(list[0])
+            self.lineEditRate.setText(str(self.selected_job.rate))
+            self.textEditOriginAddress.setText(self.selected_job.origin)
+            self.textEditDestinationAddress.setText(self.selected_job.destination)
+            self.textEditComments.setText(self.selected_job.comments)
+            self.dateEdit.setDate(QtCore.QDate(self.selected_job.start_date))
+            time = str(self.selected_job.start_time).split(':')
+            self.timeEditStartTime.setTime(QtCore.QTime(int(time[0]), int(time[1])))
+
+            index = self.spinBoxRate.findText(self.selected_job.pay_type, QtCore.Qt.MatchFixedString)
+            if index >= 0:
+                self.spinBoxRate.setCurrentIndex(index)
+
+    def clear_form(self):
+        self.lineEditRate.setText("")
+        self.textEditOriginAddress.setText("")
+        self.textEditDestinationAddress.setText("")
+        self.textEditComments.setText("")
+        self.dateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
+        self.listWidgetJobs.clearSelection()
+        print("")
+
+    def add_job(self):
+        temp = self.dateEdit.date()
+        date = temp.toPyDate()
+        temp_2 = self.timeEditStartTime.time()
+        time = temp_2.toPyTime()
+        shipper_name = self.spinBoxShipper.currentText()
+        username = self.spinBoxUsername.currentText()
+        rate = self.lineEditRate.text()
+        rate_type = self.spinBoxRate.currentText()
+        origin = self.textEditOriginAddress.toPlainText()
+        destination = self.textEditDestinationAddress.toPlainText()
+        comments = self.textEditComments.toPlainText()
+
+        self.database.add_job(shipper_name, username, date, time, rate_type, rate, origin, destination, comments)
+        self.update_jobs_list()
+        self.clear_form()
+
+    def delete_job(self):
+        item = self.listWidgetJobs.selectedItems()
+        if len(item) == 0:
+            self.labelError.setText("ERROR PLEASE SELECT JOB TO DELETE!")
+        else:
+            confirm = self.showdialog()
+            if confirm:
+                self.database.delete_job(self.selected_job.job_id)
+                self.clear_form()
+                self.update_jobs_list()
+                return
+            else:
+                return
+
+    def edit_job(self):
+        item = self.listWidgetJobs.selectedItems()
+        if len(item) == 0:
+            self.labelError.setText("ERROR PLEASE SELECT JOB TO EDIT!")
+        else:
+            confirm = self.showdialog()
+            if confirm:
+                temp = self.dateEdit.date()
+                date = temp.toPyDate()
+                temp_2 = self.timeEditStartTime.time()
+                time = temp_2.toPyTime()
+                shipper_name = self.spinBoxShipper.currentText()
+                username = self.spinBoxUsername.currentText()
+                rate = self.lineEditRate.text()
+                rate_type = self.spinBoxRate.currentText()
+                origin = self.textEditOriginAddress.toPlainText()
+                destination = self.textEditDestinationAddress.toPlainText()
+                comments = self.textEditComments.toPlainText()
+
+                self.database.edit_job(shipper_name, username, date, time, rate_type, rate, origin, destination,
+                                      comments, self.selected_job.job_id)
+                self.update_jobs_list()
+                self.clear_form()
+                return
+            else:
+                return
+
+    def showdialog(self):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+
+        msg.setText("Make Changes?")
+        msg.setInformativeText("The action CANNOT be undone!")
+        msg.setWindowTitle("Confirmation")
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        retval = msg.exec_()
+
+        if retval == QMessageBox.Yes:
+            return True
+        else:
+            return False
+
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    AddShipper = QtWidgets.QMainWindow()
-    ui = Ui_AddShipper()
-    ui.setupUi(AddShipper)
-    AddShipper.show()
+    AddJob = QtWidgets.QMainWindow()
+    ui = Ui_AddJob()
+    ui.setupUi(AddJob)
+    AddJob.show()
     sys.exit(app.exec_())
 

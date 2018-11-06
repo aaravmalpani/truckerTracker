@@ -112,6 +112,7 @@ class Database:
     def get_current_jobs(self):
         query = ("SELECT * FROM current_jobs ORDER BY start_date DESC")
         self.cursor.execute(query)
+        self.current_jobs_list.clear()
         self.current_jobs_list = []
 
         for jobs in self.cursor:
@@ -130,4 +131,23 @@ class Database:
 
         return job
 
+    def add_job(self, shipper_name, user_name, date, time, pay_type, rate, origin, destination, comments):
+        query = "INSERT INTO current_jobs (`shipper_name`, `user_name`, `start_date`, `start_time`, `pay_type`, `rate`, `origin`, `destination`, `comments`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        val = (shipper_name, user_name, date, time, pay_type, rate, origin, destination, comments)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+        return
 
+    def edit_job(self, shipper_name, user_name, date, time, pay_type, rate, origin, destination, comments, job_id):
+        query = "UPDATE current_jobs SET `shipper_name`=%s, `user_name`=%s, `start_date`=%s, `start_time`=%s, `pay_type`=%s, `rate`=%s, `origin`=%s, `destination`=%s, `comments`=%s WHERE job_id =%s "
+        val = (shipper_name, user_name, date, time, pay_type, rate, origin, destination, comments, job_id)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+        return
+
+    def delete_job(self, job_id):
+        query = "DELETE FROM current_jobs WHERE job_id = %s"
+        val = (job_id,)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+        return
