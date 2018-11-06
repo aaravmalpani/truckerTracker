@@ -148,6 +148,8 @@ class Ui_AddJob(object):
         self.labelError.setGeometry(QtCore.QRect(340, 520, 421, 21))
         self.labelError.setText("")
         self.labelError.setObjectName("labelError")
+        self.labelError.setStyleSheet('QLabel {color: #990000;}')
+
         self.pushButtonHome = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 41, 41))
         self.pushButtonHome.setStyleSheet("background-image: url(:/home/baseline_home_black_18dp.png);")
@@ -212,7 +214,7 @@ class Ui_AddJob(object):
             self.textEditComments.setText(self.selected_job.comments)
             self.dateEdit.setDate(QtCore.QDate(self.selected_job.start_date))
             time = str(self.selected_job.start_time).split(':')
-            self.timeEditStartTime.setTime(QtCore.QTime(int(time[0]), int(time[1])))
+            self.timeEditStartTime.setTime(QtCore.QTime(float(time[0]), float(time[1])))
 
             index = self.spinBoxRate.findText(self.selected_job.pay_type, QtCore.Qt.MatchFixedString)
             if index >= 0:
@@ -225,7 +227,7 @@ class Ui_AddJob(object):
         self.textEditComments.setText("")
         self.dateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         self.listWidgetJobs.clearSelection()
-        print("")
+        self.labelError.setText("")
 
     def add_job(self):
         temp = self.dateEdit.date()

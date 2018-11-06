@@ -3,6 +3,7 @@ from mysql.connector import errorcode
 from user import User
 from shipper import Shipper
 from current_jobs import Current_job
+from bill_of_lading import BOL
 
 class Database:
 
@@ -148,6 +149,70 @@ class Database:
     def delete_job(self, job_id):
         query = "DELETE FROM current_jobs WHERE job_id = %s"
         val = (job_id,)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+        return
+
+    def get_bols(self):
+        query = "SELECT * FROM bill_of_ladings ORDER BY bill_id DESC"
+        self.cursor.execute(query)
+        bols = []
+
+        for bill in self.cursor:
+            bol = BOL(bill[0], bill[1], bill[2], bill[3], bill[4], bill[5], bill[6], bill[7], bill[8], bill[9], bill[10], bill[11], bill[12])
+            bols.append(bol)
+
+        return bols
+
+    def edit_bol(self, bill_id, date, bill_number, shipper_name, user_name, rate, rate_type, origin, destination, loads, start_time, end_time, hours_worked):
+        query = "UPDATE bill_of_ladings SET `date`=%s, `bill_number`=%s, `shipper_name`=%s, `user_name`=%s, `rate`=%s, `rate_type`=%s, `origin`=%s, `destination`=%s, `loads`=%s, `start_time`=%s, `end_time`=%s, `hours_worked`=%s WHERE bill_id =%s"
+        val = (date, bill_number, shipper_name, user_name, rate, rate_type, origin, destination, loads, start_time, end_time, hours_worked, bill_id)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+        return
+
+    def add_bol(self, date, bill_number, shipper_name, user_name, rate, rate_type, origin, destination, loads, start_time, end_time, hours_worked):
+
+        user_id = self.get_user_id(user_name)
+
+        query = "INSERT INTO bill_of_ladings (`date`, `bill_number`, `shipper_name`, `user_name`, `rate`, `rate_type`, `origin`, `destination`, `loads`, `start_time`, `end_time`, `hours_worked`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        val = (date, bill_number, shipper_name, user_name, rate, rate_type, origin, destination, loads, start_time, end_time, hours_worked)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+
+        bill_id = self.get_last_bill_id()
+
+        query = "INSERT INTO job_link (`user_id`, `bill_id`) VALUES (%s, %s)"
+        val = (user_id, bill_id)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+        return
+
+    def get_last_bill_id(self):
+        query = "SELECT MAX(bill_id) FROM bill_of_ladings"
+        self.cursor.execute(query)
+
+        for id in self.cursor:
+            bill_id = id[0]
+            return bill_id
+
+    def get_user_id(self, username):
+        query = "SELECT user_id FROM users WHERE username = %s"
+        val = (username, )
+        self.cursor.execute(query, val)
+
+        for id in self.cursor:
+            user_id = id[0]
+            return user_id
+
+    def delete_bol(self, bill_id):
+        query = "DELETE FROM job_link WHERE bill_id = %s"
+        val = (bill_id,)
+        self.cursor.execute(query, val)
+        self.cnx.commit()
+
+        query = "DELETE FROM bill_of_ladings WHERE bill_id = %s"
+        val = (bill_id,)
         self.cursor.execute(query, val)
         self.cnx.commit()
         return

@@ -161,6 +161,8 @@ class Ui_DriverLog(object):
         if len(item) == 0:
             return
         else:
+            time = str(self.selected_job.start_time).split(':')
+            self.timeEditStartTime.setTime(QtCore.QTime(int(time[0]), int(time[1])))
             self.lineEditFirstName.setText(str(item[1].text()))
             self.lineEditLastName.setText(str(item[2].text()))
             self.labelUsername.setText(str(item[3].text()))

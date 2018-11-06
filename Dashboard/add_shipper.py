@@ -185,6 +185,7 @@ class Ui_AddShipper(object):
         self.textEditOriginAddress.setText("")
         self.textEditDestinationAddress.setText("")
         self.textEditComments.setText("")
+        self.labelError.setText("")
 
     def edit_shipper(self):
         item = self.listWidgetShippers.selectedItems()

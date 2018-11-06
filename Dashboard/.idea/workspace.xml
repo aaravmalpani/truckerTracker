@@ -20,6 +20,8 @@
       <change beforePath="$PROJECT_DIR$/add_job.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_job.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/add_shipper.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_shipper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_connector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver_log.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver_log.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/add_job.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +30,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Dashboard$bol.coverage" NAME="bol Coverage Results" MODIFIED="1541502428244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Dashboard$database_connector.coverage" NAME="database_connector Coverage Results" MODIFIED="1541191066285" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Dashboard$add_job.coverage" NAME="add_job Coverage Results" MODIFIED="1541416422017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Dashboard$add_shipper.coverage" NAME="add_shipper Coverage Results" MODIFIED="1541397114010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -58,28 +61,29 @@
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="png" value="2" />
-          <entry key="py" value="20" />
+          <entry key="py" value="30" />
           <entry key="sql" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="2" />
-          <entry key="Python" value="20" />
+          <entry key="Python" value="30" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="10517" />
+          <entry key="py" value="13520" />
           <entry key="sql" value="18" />
           <entry key="txt" value="14" />
         </counts>
@@ -87,7 +91,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="14" />
-          <entry key="Python" value="10516" />
+          <entry key="Python" value="13519" />
           <entry key="SQL" value="19" />
         </counts>
       </usages-collector>
@@ -98,28 +102,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database_connector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1079">
-              <caret line="142" column="105" selection-start-line="142" selection-start-column="105" selection-end-line="142" selection-end-column="105" />
+            <state relative-caret-position="913">
+              <caret line="187" column="25" selection-start-line="187" selection-start-column="25" selection-end-line="187" selection-end-column="25" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
-                <marker date="1541416255251" expanded="true" signature="470:472" ph="..." />
-                <marker date="1541416255251" expanded="true" signature="622:879" ph="..." />
-                <marker date="1541416255251" expanded="true" signature="2969:3339" ph="..." />
-                <marker date="1541416255251" expanded="true" signature="3420:3697" ph="..." />
-                <marker date="1541416255251" expanded="true" signature="3734:4710" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="501:503" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="653:910" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="3000:3370" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="3451:3728" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="3765:4741" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="7869:8056" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="8088:8089" ph="..." />
+                <marker date="1541501535945" expanded="true" signature="8088:8312" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/add_job.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="296">
+              <caret line="229" column="8" selection-start-line="229" selection-start-column="8" selection-end-line="229" selection-end-column="35" />
               <folding>
                 <element signature="e#231#273#0" expanded="true" />
-                <marker date="1541416422008" expanded="true" signature="10954:11272" ph="..." />
+                <marker date="1541502379452" expanded="true" signature="11025:11361" ph="..." />
               </folding>
             </state>
           </provider>
@@ -128,11 +135,65 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/add_shipper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="191" column="75" lean-forward="true" selection-start-line="191" selection-start-column="12" selection-end-line="191" selection-end-column="75" />
+            <state relative-caret-position="365">
+              <caret line="187" column="35" selection-start-line="187" selection-start-column="35" selection-end-line="187" selection-end-column="35" />
               <folding>
                 <element signature="e#235#277#0" expanded="true" />
-                <marker date="1541416255262" expanded="true" signature="10909:11673" ph="..." />
+                <marker date="1541502390607" expanded="true" signature="10945:11709" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bol.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="314" column="35" selection-start-line="314" selection-start-column="35" selection-end-line="314" selection-end-column="35" />
+              <folding>
+                <element signature="e#227#269#0" expanded="true" />
+                <marker date="1541502400069" expanded="true" signature="15283:15779" ph="..." />
+                <marker date="1541502400069" expanded="true" signature="15800:15809" ph="..." />
+                <marker date="1541502400069" expanded="true" signature="17203:17628" ph="..." />
+                <marker date="1541502400069" expanded="true" signature="17668:17677" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/current_jobs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+              <folding>
+                <marker date="1541410807406" expanded="true" signature="18:19" ph="..." />
+                <marker date="1541410807406" expanded="true" signature="18:23" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/driver_log.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="874">
+              <caret line="163" column="12" lean-forward="true" selection-start-line="163" selection-start-column="12" selection-end-line="164" selection-end-column="84" />
+              <folding>
+                <element signature="e#234#276#0" expanded="true" />
+                <marker date="1541494204722" expanded="true" signature="8922:10211" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bill_of_lading.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="155" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="155" />
+              <folding>
+                <marker date="1541493127685" expanded="true" signature="10:15" ph="..." />
               </folding>
             </state>
           </provider>
@@ -157,6 +218,12 @@
       <find>Ui_AddShipper</find>
       <find>AddShipper</find>
       <find>conntect</find>
+      <find>tableView</find>
+      <find>update_user_list</find>
+      <find>spinBoxUsername_2</find>
+      <find>time</find>
+      <find>int</find>
+      <find>error</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -167,12 +234,15 @@
       <list>
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/f1eff66a-e443-413f-bf85-0412f058dcaf/console.sql" />
         <option value="$PROJECT_DIR$/user.py" />
-        <option value="$PROJECT_DIR$/driver_log.py" />
         <option value="$PROJECT_DIR$/shipper.py" />
         <option value="$PROJECT_DIR$/current_jobs.py" />
+        <option value="$PROJECT_DIR$/venv/bill_of_lading.py" />
+        <option value="$PROJECT_DIR$/bill_of_lading.py" />
+        <option value="$PROJECT_DIR$/driver_log.py" />
         <option value="$PROJECT_DIR$/database_connector.py" />
-        <option value="$PROJECT_DIR$/add_shipper.py" />
         <option value="$PROJECT_DIR$/add_job.py" />
+        <option value="$PROJECT_DIR$/add_shipper.py" />
+        <option value="$PROJECT_DIR$/bol.py" />
       </list>
     </option>
   </component>
@@ -217,13 +287,13 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/venv/imgs" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/venv" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/venv/imgs" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -238,7 +308,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.add_job">
+  <component name="RunManager" selected="Python.bol">
     <configuration name="add_job" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Dashboard" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -275,6 +345,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/add_shipper.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bol" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Dashboard" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bol.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -332,9 +424,11 @@
       <item itemvalue="Python.driver_log" />
       <item itemvalue="Python.add_shipper" />
       <item itemvalue="Python.add_job" />
+      <item itemvalue="Python.bol" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.bol" />
         <item itemvalue="Python.add_job" />
         <item itemvalue="Python.add_shipper" />
         <item itemvalue="Python.driver_log" />
@@ -359,12 +453,12 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49638554" visible="true" weight="0.17238913" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49638554" visible="true" weight="0.17453505" />
       <window_info id="Structure" order="1" sideWeight="0.5036145" side_tool="true" weight="0.33476394" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28438228" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28438228" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -415,17 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/driver_log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="215" column="52" selection-start-line="215" selection-start-column="52" selection-end-line="215" selection-end-column="52" />
-          <folding>
-            <element signature="e#234#276#0" expanded="true" />
-            <marker date="1540899080093" expanded="true" signature="8773:10062" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/imgs/truck-blue.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -440,13 +523,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/add_job.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/mysql/connector/connection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="395" selection-start-line="395" selection-end-line="395" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/add_job.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database_connector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="913">
+          <caret line="187" column="25" selection-start-line="187" selection-start-column="25" selection-end-line="187" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+            <marker date="1541501535945" expanded="true" signature="501:503" ph="..." />
+            <marker date="1541501535945" expanded="true" signature="653:910" ph="..." />
+            <marker date="1541501535945" expanded="true" signature="3000:3370" ph="..." />
+            <marker date="1541501535945" expanded="true" signature="3451:3728" ph="..." />
+            <marker date="1541501535945" expanded="true" signature="3765:4741" ph="..." />
+            <marker date="1541501535945" expanded="true" signature="7869:8056" ph="..." />
+            <marker date="1541501535945" expanded="true" signature="8088:8089" ph="..." />
+            <marker date="1541501535945" expanded="true" signature="8088:8312" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/driver_log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="163" column="12" lean-forward="true" selection-start-line="163" selection-start-column="12" selection-end-line="164" selection-end-column="84" />
+          <folding>
+            <element signature="e#234#276#0" expanded="true" />
+            <marker date="1541494204722" expanded="true" signature="8922:10211" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -461,39 +573,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database_connector.py">
+    <entry file="file://$PROJECT_DIR$/add_job.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1079">
-          <caret line="142" column="105" selection-start-line="142" selection-start-column="105" selection-end-line="142" selection-end-column="105" />
+        <state relative-caret-position="296">
+          <caret line="229" column="8" selection-start-line="229" selection-start-column="8" selection-end-line="229" selection-end-column="35" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
-            <marker date="1541416255251" expanded="true" signature="470:472" ph="..." />
-            <marker date="1541416255251" expanded="true" signature="622:879" ph="..." />
-            <marker date="1541416255251" expanded="true" signature="2969:3339" ph="..." />
-            <marker date="1541416255251" expanded="true" signature="3420:3697" ph="..." />
-            <marker date="1541416255251" expanded="true" signature="3734:4710" ph="..." />
+            <element signature="e#231#273#0" expanded="true" />
+            <marker date="1541502379452" expanded="true" signature="11025:11361" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/add_shipper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="191" column="75" lean-forward="true" selection-start-line="191" selection-start-column="12" selection-end-line="191" selection-end-column="75" />
+        <state relative-caret-position="365">
+          <caret line="187" column="35" selection-start-line="187" selection-start-column="35" selection-end-line="187" selection-end-column="35" />
           <folding>
             <element signature="e#235#277#0" expanded="true" />
-            <marker date="1541416255262" expanded="true" signature="10909:11673" ph="..." />
+            <marker date="1541502390607" expanded="true" signature="10945:11709" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/add_job.py">
+    <entry file="file://$PROJECT_DIR$/bill_of_lading.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <caret line="1" column="155" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="155" />
           <folding>
-            <element signature="e#231#273#0" expanded="true" />
-            <marker date="1541416422008" expanded="true" signature="10954:11272" ph="..." />
+            <marker date="1541493127685" expanded="true" signature="10:15" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bol.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="314" column="35" selection-start-line="314" selection-start-column="35" selection-end-line="314" selection-end-column="35" />
+          <folding>
+            <element signature="e#227#269#0" expanded="true" />
+            <marker date="1541502400069" expanded="true" signature="15283:15779" ph="..." />
+            <marker date="1541502400069" expanded="true" signature="15800:15809" ph="..." />
+            <marker date="1541502400069" expanded="true" signature="17203:17628" ph="..." />
+            <marker date="1541502400069" expanded="true" signature="17668:17677" ph="..." />
           </folding>
         </state>
       </provider>
