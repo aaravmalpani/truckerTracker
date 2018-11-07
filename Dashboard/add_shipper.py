@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 from database_connector import Database
 from shipper import Shipper
+from add_job import Ui_AddJob
 
 class Ui_AddShipper(object):
 
@@ -125,10 +126,14 @@ class Ui_AddShipper(object):
         self.labelError.setStyleSheet('QLabel {color: #990000;}')
 
         self.pushButtonHome = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 41, 41))
-        self.pushButtonHome.setStyleSheet("background-image: url(:/Users/aarav/Documents/Github/truckerTracker/Dashboard/venv/imgs/truck-blue.png);")
+        self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 50, 50))
+        self.pushButtonHome.setIcon(QtGui.QIcon("/Users/aarav/Documents/Github/truckerTracker/Dashboard/venv/imgs/144x144.png"))
+        self.pushButtonHome.setStyleSheet("border-radius: 3px;")
+        self.pushButtonHome.setIconSize(QtCore.QSize(45,45))
         self.pushButtonHome.setText("")
         self.pushButtonHome.setObjectName("pushButtonHome")
+        self.pushButtonHome.clicked.connect(self.go_home)
+
         AddShipper.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(AddShipper)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
@@ -155,6 +160,9 @@ class Ui_AddShipper(object):
         self.pushButtonDeleteShipper.setText(_translate("AddShipper", "Delete Shipper"))
         self.pushButtonClearForm.setText(_translate("AddShipper","Clear Form"))
         self.label_7.setText(_translate("AddShipper", "Broker Name:"))
+
+    def go_home(self):
+         print("HOME PRESSED!")
 
     def update_shipper_list(self):
         self.listWidgetShippers.clear()

@@ -178,7 +178,9 @@ class Ui_Bill_of_Lading(object):
 
         self.pushButtonHome = QtWidgets.QPushButton(self.centralwidget)
         self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 41, 41))
-        self.pushButtonHome.setStyleSheet("background-image: url(:/home/baseline_home_black_18dp.png);")
+        self.pushButtonHome.setIcon(
+            QtGui.QIcon("/Users/aarav/Documents/Github/truckerTracker/Dashboard/venv/imgs/144x144.png"))
+        self.pushButtonHome.setStyleSheet("border-radius: 3px;")
         self.pushButtonHome.setText("")
         self.pushButtonHome.setObjectName("pushButtonHome")
 
