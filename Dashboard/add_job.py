@@ -87,8 +87,8 @@ class Ui_AddJob(object):
         self.pushButtonDeleteJob.setGeometry(QtCore.QRect(90, 400, 114, 32))
         self.pushButtonDeleteJob.setStyleSheet("background-color: rgb(253, 70, 70);")
         self.pushButtonDeleteJob.clicked.connect(self.delete_job)
-
         self.pushButtonDeleteJob.setObjectName("pushButtonDeleteJob")
+
         self.spinBoxShipper = QtWidgets.QComboBox(self.groupBox)
         self.spinBoxShipper.setGeometry(QtCore.QRect(110, 10, 341, 22))
         self.spinBoxShipper.setObjectName("spinBoxShipper")
@@ -151,10 +151,11 @@ class Ui_AddJob(object):
         self.labelError.setStyleSheet('QLabel {color: #990000;}')
 
         self.pushButtonHome = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 41, 41))
+        self.pushButtonHome.setGeometry(QtCore.QRect(720, 20, 50, 50))
         self.pushButtonHome.setIcon(
             QtGui.QIcon("/Users/aarav/Documents/Github/truckerTracker/Dashboard/venv/imgs/144x144.png"))
         self.pushButtonHome.setStyleSheet("border-radius: 3px;")
+        self.pushButtonHome.setIconSize(QtCore.QSize(45, 45))
         self.pushButtonHome.setText("")
         self.pushButtonHome.setObjectName("pushButtonHome")
         AddJob.setCentralWidget(self.centralwidget)
