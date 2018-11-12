@@ -80,9 +80,9 @@ class Ui_FleetConsole(object):
         FleetConsole.setWindowTitle(_translate("FleetConsole", "MainWindow"))
         self.pushButtonShipper.setText(_translate("FleetConsole", "Shipper Manager"))
         self.pushButtonJobs.setText(_translate("FleetConsole", "Jobs Manager"))
-        self.pushButtonGenerateInvoice.setText(_translate("FleetConsole", "Generate Invoice"))
+        self.pushButtonGenerateInvoice.setText(_translate("FleetConsole", "Generate Logs"))
         self.pushButtonBol.setText(_translate("FleetConsole", "View Bill of Ladings"))
-        self.pushButtonDriverLogs.setText(_translate("FleetConsole", "Driver Logs"))
+        self.pushButtonDriverLogs.setText(_translate("FleetConsole", "Driver Info"))
         self.menuFLEET_MANAGER_CONSOLE.setTitle(_translate("FleetConsole", "FLEET MANAGER CONSOLE"))
 
     def show_shipper_manager(self):

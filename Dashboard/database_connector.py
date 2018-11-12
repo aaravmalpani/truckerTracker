@@ -216,3 +216,16 @@ class Database:
         self.cursor.execute(query, val)
         self.cnx.commit()
         return
+
+    def get_bol_invoiced(self, shipper_name, from_date, to_date):
+        query = "SELECT * FROM bill_of_ladings WHERE shipper_name = %s AND (date >= %s AND date <=%s) ORDER BY date ASC"
+        val = shipper_name, from_date, to_date
+        self.cursor.execute(query, val)
+        bols = []
+
+        for bill in self.cursor:
+            bol = BOL(bill[0], bill[1], bill[2], bill[3], bill[4], bill[5], bill[6], bill[7], bill[8], bill[9],
+                      bill[10], bill[11], bill[12])
+            bols.append(bol)
+
+        return bols
