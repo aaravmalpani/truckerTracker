@@ -142,6 +142,7 @@ class Ui_AddShipper(object):
         self.pushButtonGenerateDriver.setGeometry(QtCore.QRect(160, 450, 131, 32))
         self.pushButtonGenerateDriver.setStyleSheet("background-color: rgb(40, 195, 50);")
         self.pushButtonGenerateDriver.setObjectName("pushButtonGenerateDriver")
+        self.pushButtonGenerateDriver.clicked.connect(self.generate_driver_log)
 
         self.label_4 = QtWidgets.QLabel(self.groupBox)
         self.label_4.setGeometry(QtCore.QRect(10, 100, 91, 21))
@@ -182,6 +183,131 @@ class Ui_AddShipper(object):
         self.textEditFileName_2.setText("")
         self.labelError_2.setText("")
         self.lineEditRate.setText("")
+
+    def generate_driver_log(self):
+        filename = self.textEditFileName_2.text()
+        if filename == "":
+            self.labelError_2.setText("Error: Please enter file name")
+        else:
+            temp = self.dateEditFrom_2.date()
+            date_from = temp.toPyDate()
+            temp2 = self.dateEditTo_2.date()
+            date_to = temp2.toPyDate()
+            driver_name = self.spinBoxDriverName.currentText()
+            data = self.database.get_driver_logs(driver_name, date_from, date_to)
+
+            filename += ".xlsx"
+            workbook = xlsxwriter.Workbook(filename)
+            worksheet = workbook.add_worksheet()
+
+            header_format = workbook.add_format()
+            header_format.set_bold()
+            header_format.set_align('left')
+            header_format.set_font_size(21)
+            header_format.set_bg_color('#a1a7af')
+
+            money = workbook.add_format({'num_format': '$0.00'})
+
+            worksheet.merge_range('A1:E1', 'Pullin\' Freight, LLC', header_format)
+
+            title_format = workbook.add_format()
+            title_format.set_bold()
+            title_format.set_align('left')
+            title_format.set_font_size(15)
+
+            worksheet.write('A2:C2', 'Driver Log For:  {}'.format(driver_name.capitalize()), title_format)
+            worksheet.write('A3:C3', 'Rate:', title_format)
+            worksheet.write('B3', 20, money)
+
+            title_format_2 = workbook.add_format()
+            title_format_2.set_bold()
+            title_format_2.set_align('right')
+            title_format_2.set_font_size(13)
+            title_format_2.set_bg_color('#a1a7af')
+
+            worksheet.merge_range('F1:J1', 'Log from: {} to: {}'.format(str(date_from), str(date_to)),
+                                  title_format_2)
+
+            row = 3
+            col = 0
+
+            table_title_format = workbook.add_format()
+            table_title_format.set_bold()
+            table_title_format.set_color('#6d6d6d')
+            table_title_format.set_align('center')
+            table_title_format.set_font_size(13)
+
+            worksheet.write(row, col, 'Date', table_title_format)
+            worksheet.write(row, col + 1, 'Invoice #', table_title_format)
+            worksheet.write(row, col + 2, 'Shipper', table_title_format)
+            worksheet.write(row, col + 3, 'Origin', table_title_format)
+            worksheet.write(row, col + 4, 'Destination', table_title_format)
+            worksheet.write(row, col + 5, 'Hours', table_title_format)
+            worksheet.write(row, col + 6, 'Sub-Total', table_title_format)
+
+            table_content_even = workbook.add_format()
+            table_content_even.set_bg_color('#dbdbdb')
+            table_content_even.set_font_size(11)
+
+            table_content_odd = workbook.add_format()
+            table_content_odd.set_bg_color('#ffffff')
+            table_content_odd.set_font_size(11)
+
+            table_content_even_money = workbook.add_format()
+            table_content_even_money.set_bg_color('#dbdbdb')
+            table_content_even_money.set_font_size(11)
+            table_content_even_money.set_num_format('$0.00')
+
+            table_content_odd_money = workbook.add_format()
+            table_content_odd_money.set_bg_color('#ffffff')
+            table_content_odd_money.set_font_size(11)
+            table_content_odd_money.set_num_format('$0.00')
+
+            row = 4
+            theme = table_content_even
+            money = table_content_even_money
+
+            for bol in data:
+                if row %2 == 0:
+                    theme = table_content_even
+                    money = table_content_even_money
+                else:
+                    theme = table_content_odd
+                    money = table_content_odd_money
+                if bol.loads == 0:
+                    selected_payment = bol.hours_worked
+                if bol.hours_worked == 0:
+                    selected_payment = bol.loads
+
+                row_excel = row+1
+
+                worksheet.write(row, col, str(bol.date), theme)
+                print(str(bol.date))
+                worksheet.write(row, col + 1, bol.bill_number, theme)
+                worksheet.write(row, col + 2, bol.shipper_name, theme)
+                worksheet.write(row, col + 3, bol.origin, theme)
+                worksheet.write(row, col + 4, bol.destination, theme)
+                worksheet.write(row, col + 5, selected_payment, theme)
+                worksheet.write(row, col + 6, '=B3*F{}'.format(row_excel), money)
+                row += 1
+
+            total = workbook.add_format()
+            total.set_bold()
+            total.set_num_format('$0.00')
+            total.set_font_size(12)
+            row_excel = row + 1
+            worksheet.write(row, 6, '=SUM(G5:G{})'.format(row),total)
+            worksheet.write(row, 5, '=SUM(F5:F{})'.format(row))
+            worksheet.write(row,3, 'Grand Total:',total)
+
+            end = workbook.add_format()
+            end.set_bg_color('#319e3b')
+            row += 1
+            row_excel = row + 1
+            worksheet.merge_range('A{}:G{}'.format(row_excel, row_excel), '', end)
+
+            workbook.close()
+            self.clear_form()
 
     def generate_invoice(self):
         filename = self.textEditFileName.text()
