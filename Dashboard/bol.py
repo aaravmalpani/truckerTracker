@@ -16,7 +16,7 @@ class Ui_Bill_of_Lading(object):
 
     database = Database()
 
-    def setupUi(self, Bill_of_Lading):
+    def setupUiBOL(self, Bill_of_Lading):
         Bill_of_Lading.setObjectName("Bill_of_Lading")
         Bill_of_Lading.resize(809, 633)
         Bill_of_Lading.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -161,7 +161,7 @@ class Ui_Bill_of_Lading(object):
         self.pushButtonClearJob.setGeometry(QtCore.QRect(140, 220, 114, 32))
         self.pushButtonClearJob.setStyleSheet("background-color: rgb(122, 122, 122);")
         self.pushButtonClearJob.setObjectName("pushButtonClearJob")
-        self.pushButtonClearJob.clicked.connect(self.clear_form)
+        self.pushButtonClearJob.clicked.connect(self.clear_form_BOL)
 
         self.label_14 = QtWidgets.QLabel(self.groupBox)
         self.label_14.setGeometry(QtCore.QRect(310, 70, 71, 21))
@@ -190,7 +190,7 @@ class Ui_Bill_of_Lading(object):
         self.tableWidgetBills.setObjectName("tableWidgetBills")
         self.tableWidgetBills.setColumnCount(13)
         self.tableWidgetBills.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        self.tableWidgetBills.itemSelectionChanged.connect(self.change_data)
+        self.tableWidgetBills.itemSelectionChanged.connect(self.change_data_BOL)
         column_titles = ['id', 'date', 'bill_number', 'shipper_name', 'username', 'rate', 'rate_type', 'origin', 'destination', 'loads',
                          'start_time', 'end_time', 'hours_worked']
         counter = 0
@@ -213,7 +213,7 @@ class Ui_Bill_of_Lading(object):
         self.statusbar.setObjectName("statusbar")
         Bill_of_Lading.setStatusBar(self.statusbar)
 
-        self.retranslateUi(Bill_of_Lading)
+        self.retranslateUiBOL(Bill_of_Lading)
         QtCore.QMetaObject.connectSlotsByName(Bill_of_Lading)
 
     def update_bol_table(self):
@@ -240,7 +240,7 @@ class Ui_Bill_of_Lading(object):
             self.tableWidgetBills.setItem(row_number, 12, QtWidgets.QTableWidgetItem(str(bill.hours_worked)))
         return
 
-    def change_data(self):
+    def change_data_BOL(self):
         item = self.tableWidgetBills.selectedItems()
         if len(item) == 0:
             return
@@ -302,9 +302,9 @@ class Ui_Bill_of_Lading(object):
 
                 self.database.edit_bol(bill_id, date, bill_number,shipper_name, username, rate, rate_type, origin, destination, loads, start_time, end_time, hours_worked)
                 self.update_bol_table()
-                self.clear_form()
+                self.clear_form_BOL()
 
-    def clear_form(self):
+    def clear_form_BOL(self):
         self.tableWidgetBills.clearSelection()
         self.dateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         self.lineEditBillNumber.setText("")
@@ -351,7 +351,7 @@ class Ui_Bill_of_Lading(object):
         self.database.add_bol(date, bill_number, shipper_name, username, rate, rate_type, origin, destination,
                                loads, start_time, end_time, hours_worked)
         self.update_bol_table()
-        self.clear_form()
+        self.clear_form_BOL()
 
     def delete_bol(self):
         item = self.tableWidgetBills.selectedItems()
@@ -363,11 +363,11 @@ class Ui_Bill_of_Lading(object):
                 bill_id = item[0].text()
                 self.database.delete_bol(bill_id)
                 self.update_bol_table()
-                self.clear_form()
+                self.clear_form_BOL()
                 return
 
 
-    def retranslateUi(self, Bill_of_Lading):
+    def retranslateUiBOL(self, Bill_of_Lading):
         _translate = QtCore.QCoreApplication.translate
         Bill_of_Lading.setWindowTitle(_translate("Bill_of_Lading", "MainWindow"))
         self.label.setText(_translate("Bill_of_Lading", "BILL OF LADINGS"))
@@ -394,7 +394,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     Bill_of_Lading = QtWidgets.QMainWindow()
     ui = Ui_Bill_of_Lading()
-    ui.setupUi(Bill_of_Lading)
+    ui.setupUiBOL(Bill_of_Lading)
     Bill_of_Lading.show()
     sys.exit(app.exec_())
 

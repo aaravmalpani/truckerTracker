@@ -16,7 +16,7 @@ class Ui_AddJob(object):
 
     database = Database()
 
-    def setupUi(self, AddJob):
+    def setupUiAddJob(self, AddJob):
         AddJob.setObjectName("AddJob")
         AddJob.resize(809, 633)
         AddJob.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -167,10 +167,10 @@ class Ui_AddJob(object):
         self.statusbar.setObjectName("statusbar")
         AddJob.setStatusBar(self.statusbar)
 
-        self.retranslateUi(AddJob)
+        self.retranslateUiAddJob(AddJob)
         QtCore.QMetaObject.connectSlotsByName(AddJob)
 
-    def retranslateUi(self, AddJob):
+    def retranslateUiAddJob(self, AddJob):
         _translate = QtCore.QCoreApplication.translate
         AddJob.setWindowTitle(_translate("AddJob", "MainWindow"))
         self.label.setText(_translate("AddJob", "ADD JOB"))
@@ -312,7 +312,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     AddJob = QtWidgets.QMainWindow()
     ui = Ui_AddJob()
-    ui.setupUi(AddJob)
+    ui.setupUiAddJob(AddJob)
     AddJob.show()
     sys.exit(app.exec_())
 

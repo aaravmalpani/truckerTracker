@@ -17,7 +17,7 @@ class Ui_AddShipper(object):
 
     database = Database()
 
-    def setupUi(self, AddShipper):
+    def setupUiAddShipper(self, AddShipper):
         AddShipper.setObjectName("AddShipper")
         AddShipper.resize(800, 600)
         AddShipper.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -39,7 +39,7 @@ class Ui_AddShipper(object):
         self.listWidgetShippers.setGeometry(QtCore.QRect(40, 80, 261, 451))
         self.listWidgetShippers.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked|QtWidgets.QAbstractItemView.EditKeyPressed|QtWidgets.QAbstractItemView.SelectedClicked)
         self.listWidgetShippers.setObjectName("listWidgetShippers")
-        self.listWidgetShippers.itemSelectionChanged.connect(self.change_data)
+        self.listWidgetShippers.itemSelectionChanged.connect(self.change_data_add_shipper)
 
         self.update_shipper_list()
 
@@ -109,7 +109,7 @@ class Ui_AddShipper(object):
         self.pushButtonClearForm.setGeometry(QtCore.QRect(10, 400, 101, 32))
         self.pushButtonClearForm.setStyleSheet("background-color: rgb(122, 122, 122);")
         self.pushButtonClearForm.setObjectName("pushButtonClearForm")
-        self.pushButtonClearForm.clicked.connect(self.clear_data)
+        self.pushButtonClearForm.clicked.connect(self.clear_data_add_shipper)
 
         self.lineEditBrokerName = QtWidgets.QLineEdit(self.groupBox)
         self.lineEditBrokerName.setGeometry(QtCore.QRect(10, 80, 441, 21))
@@ -143,10 +143,10 @@ class Ui_AddShipper(object):
         self.statusbar.setObjectName("statusbar")
         AddShipper.setStatusBar(self.statusbar)
 
-        self.retranslateUi(AddShipper)
+        self.retranslateUiAddShipper(AddShipper)
         QtCore.QMetaObject.connectSlotsByName(AddShipper)
 
-    def retranslateUi(self, AddShipper):
+    def retranslateUiAddShipper(self, AddShipper):
         _translate = QtCore.QCoreApplication.translate
         AddShipper.setWindowTitle(_translate("AddShipper", "MainWindow"))
         self.label.setText(_translate("AddShipper", "ADD SHIPPER"))
@@ -171,7 +171,7 @@ class Ui_AddShipper(object):
             shipper_description = "{} - {} - {}".format(shipper.shipper_id, shipper.name, shipper.address)
             self.listWidgetShippers.addItem(shipper_description)
 
-    def change_data(self):
+    def change_data_add_shipper(self):
         item = self.listWidgetShippers.selectedItems()
         if len(item) == 0:
             return
@@ -185,7 +185,7 @@ class Ui_AddShipper(object):
             self.textEditDestinationAddress.setText(shipper.destination)
             self.textEditComments.setText(shipper.comments)
 
-    def clear_data(self):
+    def clear_data_add_shipper(self):
         self.listWidgetShippers.clearSelection()
         self.lineEditShipperName.setText("")
         self.lineEditBrokerName.setText("")
@@ -213,7 +213,7 @@ class Ui_AddShipper(object):
                 comments = str(self.textEditComments.toPlainText())
                 self.database.update_shipper(shipper_id,name, broker_name, address,origin,destination,comments)
                 self.update_shipper_list()
-                self.clear_data()
+                self.clear_data_add_shipper()
                 return
             else:
                 return
@@ -230,7 +230,7 @@ class Ui_AddShipper(object):
 
                 self.database.delete_shipper(shipper_id)
                 self.update_shipper_list()
-                self.clear_data()
+                self.clear_data_add_shipper()
                 return
             else:
                 return
@@ -252,7 +252,7 @@ class Ui_AddShipper(object):
 
         self.database.add_shipper(name, broker_name, address,origin,destination,comments)
         self.update_shipper_list()
-        self.clear_data()
+        self.clear_data_add_shipper()
         return
 
     def showdialog(self):
@@ -278,7 +278,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     AddShipper = QtWidgets.QMainWindow()
     ui = Ui_AddShipper()
-    ui.setupUi(AddShipper)
+    ui.setupUiAddShipper(AddShipper)
     AddShipper.show()
     sys.exit(app.exec_())
 

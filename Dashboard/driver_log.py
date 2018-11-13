@@ -15,7 +15,7 @@ class Ui_DriverLog(object):
 
     database = Database()
 
-    def setupUi(self, DriverLog):
+    def setupUiDriverLog(self, DriverLog):
         DriverLog.setObjectName("DriverLog")
         DriverLog.resize(809, 633)
         DriverLog.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -120,7 +120,7 @@ class Ui_DriverLog(object):
         self.tableWidgetUsers.setObjectName("tableWidgetUsers")
         self.tableWidgetUsers.setColumnCount(9)
         self.tableWidgetUsers.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
-        self.tableWidgetUsers.itemSelectionChanged.connect(self.change_data)
+        self.tableWidgetUsers.itemSelectionChanged.connect(self.change_data_driver_log)
         column_titles = ['id', 'first name', 'last name','username','phone number', 'email', 'address', 'license no.', 'license exp.']
         counter = 0
         for title in column_titles:
@@ -141,10 +141,10 @@ class Ui_DriverLog(object):
         self.statusbar.setObjectName("statusbar")
         DriverLog.setStatusBar(self.statusbar)
 
-        self.retranslateUi(DriverLog)
+        self.retranslateUiDriverLog(DriverLog)
         QtCore.QMetaObject.connectSlotsByName(DriverLog)
 
-    def retranslateUi(self, DriverLog):
+    def retranslateUiDriverLog(self, DriverLog):
         _translate = QtCore.QCoreApplication.translate
         DriverLog.setWindowTitle(_translate("DriverLog", "MainWindow"))
         self.labelTitle.setText(_translate("DriverLog", "DRIVER LOG"))
@@ -159,13 +159,13 @@ class Ui_DriverLog(object):
         self.label_8.setText(_translate("DriverLog", "License No.:"))
         self.label_9.setText(_translate("DriverLog", "License Exp.:"))
 
-    def change_data(self):
+    def change_data_driver_log(self):
         item = self.tableWidgetUsers.selectedItems()
         if len(item) == 0:
             return
         else:
-            time = str(self.selected_job.start_time).split(':')
-            self.timeEditStartTime.setTime(QtCore.QTime(int(time[0]), int(time[1])))
+            #time = str(self.selected_job.start_time).split(':')
+            #self.timeEditStartTime.setTime(QtCore.QTime(int(time[0]), int(time[1])))
             self.lineEditFirstName.setText(str(item[1].text()))
             self.lineEditLastName.setText(str(item[2].text()))
             self.labelUsername.setText(str(item[3].text()))
@@ -212,7 +212,7 @@ class Ui_DriverLog(object):
                 address = str(self.textEditAddress.toPlainText())
                 self.database.update_user(user_id, first_name, last_name, phone_number, email, address)
                 self.update_user_list()
-                self.clear_data()
+                self.clear_data_driver_log()
                 return
             else:
                 return
@@ -227,7 +227,7 @@ class Ui_DriverLog(object):
                 user_id = int(item[0].text())
                 self.database.delete_user(user_id)
                 self.update_user_list()
-                self.clear_data()
+                self.clear_data_driver_log()
                 return
             else:
                 return
@@ -247,7 +247,7 @@ class Ui_DriverLog(object):
         else:
             return False
 
-    def clear_data(self):
+    def clear_data_driver_log(self):
         self.lineEditFirstName.setText("")
         self.lineEditLastName.setText("")
         self.labelUsername.setText("")
@@ -264,7 +264,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     DriverLog = QtWidgets.QMainWindow()
     ui = Ui_DriverLog()
-    ui.setupUi(DriverLog)
+    ui.setupUiDriverLog(DriverLog)
     
     DriverLog.show()
     sys.exit(app.exec_())

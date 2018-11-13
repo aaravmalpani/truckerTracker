@@ -16,7 +16,7 @@ class Ui_AddShipper(object):
 
     database = Database()
 
-    def setupUi(self, AddShipper):
+    def setupUiGenerate(self, AddShipper):
         AddShipper.setObjectName("AddShipper")
         AddShipper.resize(809, 633)
         AddShipper.setStyleSheet("background-color: rgb(255, 255, 255);")
@@ -173,7 +173,7 @@ class Ui_AddShipper(object):
         self.statusbar.setObjectName("statusbar")
         AddShipper.setStatusBar(self.statusbar)
 
-        self.retranslateUi(AddShipper)
+        self.retranslateUiGenerate(AddShipper)
         QtCore.QMetaObject.connectSlotsByName(AddShipper)
 
     def clear_form(self):
@@ -450,7 +450,7 @@ class Ui_AddShipper(object):
             workbook.close()
             self.clear_form()
 
-    def retranslateUi(self, AddShipper):
+    def retranslateUiGenerate(self, AddShipper):
         _translate = QtCore.QCoreApplication.translate
         AddShipper.setWindowTitle(_translate("AddShipper", "MainWindow"))
         self.label.setText(_translate("AddShipper", "GENERATE LOGS"))
@@ -473,7 +473,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     AddShipper = QtWidgets.QMainWindow()
     ui = Ui_AddShipper()
-    ui.setupUi(AddShipper)
+    ui.setupUiGenerate(AddShipper)
     AddShipper.show()
     sys.exit(app.exec_())
 
